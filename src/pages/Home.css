@@ -1,0 +1,50 @@
+.home {
+  height: 100vh;
+  width: 100%;
+  background: url("https://images.unsplash.com/photo-1600585152220-90363fe7e115")
+    no-repeat center center/cover; /* صورة بيت مودرن */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.overlay {
+  background: rgba(255, 255, 255, 0.7); /* أوف وايت شفاف */
+  padding: 40px 60px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.overlay h1 {
+  font-size: 2.5rem;
+  color: #3e3e3e;
+  margin-bottom: 20px;
+  font-family: "Cairo", sans-serif;
+}
+
+.overlay p {
+  font-size: 1.2rem;
+  color: #6b4f2d; /* بيج/بني فاتح */
+  margin-bottom: 30px;
+}
+
+.shop-btn {
+  background: linear-gradient(135deg, #fdfdfd, #f5f0e8);
+  color: #6b4f2d;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.shop-btn:hover {
+  background: linear-gradient(135deg, #fff, #e6dacd);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
