@@ -1,14 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import "./Navbar.css";
+import "../pages/Navbar.css";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef(null);
 
+  const toggleMenu = () => setOpen(!open);
   const closeMenu = () => setOpen(false);
 
+  // يقفل القائمة لما نضغط براها
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <nav className="navbar">
+    <nav className="navbar" ref={menuRef}>
       <div className="logo-container">
         <img 
           src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" 
@@ -23,7 +39,7 @@ function Navbar() {
       <button
         className={`hamburger ${open ? "active" : ""}`}
         aria-label="Toggle menu"
-        onClick={() => setOpen(!open)}
+        onClick={toggleMenu}
       >
         <span></span><span></span><span></span>
       </button>
