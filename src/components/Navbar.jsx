@@ -1,40 +1,33 @@
-import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 
 function Navbar() {
-  const [open, setOpen] = useState(false);
-  const menuRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setOpen(!open);
-  const closeMenu = () => setOpen(false);
-
-  // يقفل القائمة لما نضغط براها
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        closeMenu();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
-    <nav className="navbar" ref={menuRef}>
-      <div className="logo-container">
-        <img 
-          src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" 
-          alt="logo" 
-          className="logo-img" 
-        />
-        <Link to="/" className="logo-text" onClick={closeMenu}>
-          FurnitureApp
-        </Link>
+    <nav className="navbar">
+      <div className="logo">MySite</div>
+
+      <div className="menu-icon" onClick={toggleMenu}>
+        ☰
       </div>
+
+      <ul className={`nav-links ${isOpen ? "active" : ""}`}>
+        <li><Link to="/" onClick={() => setIsOpen(false)}>Home</Link></li>
+        <li><Link to="/products" onClick={() => setIsOpen(false)}>Products</Link></li>
+        <li><Link to="/about" onClick={() => setIsOpen(false)}>About</Link></li>
+        <li><Link to="/contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
+      </ul>
+    </nav>
+  );
+}
+
+export default Navbar;      </div>
 
       <button
         className={`hamburger ${open ? "active" : ""}`}
